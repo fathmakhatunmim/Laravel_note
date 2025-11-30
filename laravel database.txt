@@ -130,3 +130,95 @@ Full Laravel Flow Summary (Flowchart Style)
 9. Test CRUD
    ↓
 [End]
+
+
+Model = Database এর সাথে যোগাযোগ করার ক্লাস
+
+Model কী করে?
+
+Model মূলত ডাটাবেসের টেবিলকে represent করে এবং ডাটার উপর কাজ করে:
+
+Model-এর কাজগুলো:
+
+✔ Database থেকে ডাটা আনা → Model::all(), Model::find()
+
+✔ Database-এ নতুন ডাটা সেভ করা → Model::create()
+
+✔ ডাটা আপডেট করা → $model->update()
+
+✔ ডাটা ডিলিট করা → $model->delete()
+
+✔ টেবিলের নাম, fillable field define করা
+
+✔ Relationship define করা (one to many, many to many)
+
+Model কে টেবিলের সাথে সংযুক্ত করে
+
+Model name: Student.php
+Table name: students
+
+🟦 Controller vs Model Difference (সহজ ভাষায়)
+❗ Controller = Logic পরিচালনা করে
+❗ Model = Database এর সাথে কাজ করে
+
+🟢 Model কী করে?
+
+কাজ	উদাহরণ
+ডাটাবেস থেকে ডাটা আনা	Student::all()
+ডাটাবেসে ডাটা ইনসার্ট	Student::create([...])
+ডাটা আপডেট	$student->update()
+ডাটা ডিলিট                    	$student->delete()
+Relationship define	$this->hasMany()
+
+✔ Model = ডাটা হ্যান্ডেল করা
+
+🔵 Controller কী করে?
+
+কাজ	উদাহরণ
+ইউজার কি চায় তা নিয়ন্ত্রণ করে	রিকোয়েস্ট নেয়
+Model থেকে ডাটা এনে ভিউতে পাঠায়	return view(...);
+Validation করে	                  $request->validate([...])
+Redirect করে	                  return redirect()->back();
+View দেখায়	                                    return view('students.index');
+
+✔ Controller = user request → model → view এই flow control করে
+
+Controller:
+public function store(Request $request)
+{
+    Student::create([
+        'name' => $request->name,
+        'email' => $request->email,
+    ]);
+
+    return redirect()->back();
+}
+
+
+Controller কী করলো?
+→ Request নিল
+→ Model কে ডাটা save করতে বললো
+→ Redirect করলো
+
+Model:
+class Student extends Model
+{
+    protected $fillable = ['name', 'email'];
+}
+
+
+Model কী করলো?
+→ কোন কোন ডাটা save করা যাবে তা ঠিক করলো
+→ ডাটা save করার method already আছে (Eloquent ORM)
+
+🔥 Final Difference Summary (Very Short)
+বিষয়	           Model	        Controller
+কাজ	       ডাটাবেসে CRUD	Request control + Logic
+অবস্থান	          app/Models	app/Http/Controllers
+ডাটাবেস হ্যান্ডেল?	হ্যাঁ	না
+ভিউ হ্যান্ডেল?	না	হ্যাঁ
+Relationship	হ্যাঁ	না
+
+
+
+
