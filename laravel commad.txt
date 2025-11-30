@@ -1,0 +1,9 @@
+maigration
+php artisan make:migration create_student_table
+database a add korar jonno:
+php artisan migrate
+
+
+2,3 ta jinis ak name korle:
+php artisan make:model user --controller --resource
+

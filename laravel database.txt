@@ -1,0 +1,132 @@
+Laravel Database Setup Flowchart (Text Version)
+1️⃣ . env File Configure (Database Connection সেট করা)
+Step 1 → Open .env file
+Step 2 → Edit database settings
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_db_name
+DB_USERNAME=root
+DB_PASSWORD=
+
+
+✔ এখানে তুমি তোমার ডাটাবেসের নাম দেবে
+✔ XAMPP → phpMyAdmin → database create করে নাম বসাবে
+
+2️⃣    Create Migration File (Table তৈরির নকশা তৈরি)
+Step 1 → php artisan make:migration create_students_table
+Step 2 → database/migrations ফাইলে table structure লিখবে
+
+
+Example:
+
+public function up()
+{
+    Schema::create('students', function (Blueprint $table) {
+        $table->id();
+        $table->string('name');
+        $table->string('email');
+        $table->timestamps();
+    });
+}
+
+3️⃣   Run Migration (Table Create করা)
+Step → php artisan migrate
+
+
+✔ এই স্টেপে students টেবিল ডাটাবেসে তৈরি হবে।
+
+4️⃣   Create Model (Table এর সাথে কাজ করার ক্লাস)
+Step → php artisan make:model Student
+
+
+Model ফাইলে table না লিখলেও হয়
+(যদি টেবিলের নাম plural accurate হয় → students)
+
+Example:
+
+class Student extends Model
+{
+    protected $fillable = ['name', 'email'];
+}
+
+5️⃣    Create Controller (Logic লেখার জন্য)
+Step → php artisan make:controller StudentController --resource
+
+
+এতে ৭টি default function পাওয়া যায় (index, create, store, show, edit, update, destroy)
+
+CRUD কাজ করার main function → index, store, update, destroy
+
+Example:
+
+public function index()
+{
+    $students = Student::all();
+    return view('students.index', compact('students'));
+}
+
+public function store(Request $request)
+{
+    Student::create([
+        'name' => $request->name,
+        'email' => $request->email,
+    ]);
+
+    return redirect()->back();
+}
+
+6️⃣    Add Route (Controller কে route এর সাথে যুক্ত করা)
+Step → routes/web.php ফাইল খুলবে
+
+
+Resource route:
+
+Route::resource('/student', StudentController::class);
+
+
+OR simple routes:
+
+Route::get('/student', [StudentController::class, 'index']);
+Route::post('/student', [StudentController::class, 'store']);
+
+7️⃣ Create Blade File (View তৈরি করা)
+Step → resources/views/students/index.blade.php
+
+
+Example:
+
+<form action="/student" method="POST">
+    @csrf
+    <input type="text" name="name" placeholder="Enter name">
+    <input type="email" name="email" placeholder="Enter email">
+    <button type="submit">Save</button>
+</form>
+
+@foreach($students as $s)
+    <p>{{ $s->id }} - {{ $s->name }} - {{ $s->email }}</p>
+@endforeach
+
+Full Laravel Flow Summary (Flowchart Style)
+[Start]
+   ↓
+1. Create Database in phpMyAdmin
+   ↓
+2. Configure .env (DB settings)
+   ↓
+3. Create Migration (table structure)
+   ↓
+4. Run Migration (table created)
+   ↓
+5. Create Model (Student.php)
+   ↓
+6. Create Controller (logic)
+   ↓
+7. Add Routes (web.php)
+   ↓
+8. Create Views (Blade files)
+   ↓
+9. Test CRUD
+   ↓
+[End]

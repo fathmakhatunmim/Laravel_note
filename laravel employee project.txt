@@ -1,0 +1,13 @@
+firstly database configaration;
+
+then migration create the table;
+php artisan make:migration create_emplist_table
+
+
+tarpor boostrap ar cnd copy kore nibo
+tarpor controlor create korbo
+php artisan make:controller empcontroller
+
+
+tarpor resource a giye file create korbo view ar vitor
+
