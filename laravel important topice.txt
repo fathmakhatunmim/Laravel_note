@@ -1,0 +1,122 @@
+🔥 Laravel শেখার জন্য মূল বিষয়গুলো (Step by Step)
+1️⃣   PHP & OOP Knowledge
+
+Laravel PHP framework, তাই প্রথমে PHP ভালোভাবে জানা লাগবে:
+
+PHP syntax, variables, loops, functions
+
+OOP (Object-Oriented Programming)
+
+Namespaces, Classes, Inheritance
+
+Composer (dependency management)
+
+2️⃣    Basic Laravel Setup
+
+Laravel project install করা (composer create-project laravel/laravel myProject)
+
+.env ফাইল বোঝা
+
+Artisan commands (like php artisan serve, php artisan make:controller)
+
+Laravel folder structure:
+
+app/, routes/, resources/views/, config/, database/
+
+3️⃣   Routing & Controllers
+
+Route declare করা (web.php, api.php)
+
+Controller create করা
+
+Route → Controller → View flow বোঝা
+
+Route parameters, named routes, route groups, middleware
+
+4️⃣    Blade Templating Engine
+
+Blade syntax: {{ }}, @if, @foreach
+
+Layouts, components, partials
+
+Passing data from controller to view (compact(), with(), etc.)
+
+5️⃣   Database & Eloquent ORM
+
+Database configuration (.env)
+
+Migration, seeding, factory
+
+Eloquent basics: Model::all(), Model::find(), create(), update(), delete()
+
+Relationships: one-to-one, one-to-many, many-to-many
+
+Query Builder basics
+
+6️⃣   Authentication & Authorization
+
+Laravel Auth scaffolding (laravel/ui বা laravel/breeze)
+
+Login, Register, Logout
+
+Middleware: auth, guest
+
+Roles & Permissions (optional advanced)
+
+7️⃣   Session & Cookie
+
+Session drivers (file, database, redis)
+
+Cookie set & get
+
+Middleware session handling
+
+8️⃣   Validation & Forms
+
+Request validation ($request->validate())
+
+Custom error messages
+
+CSRF protection
+
+9️⃣   Advanced Features (Later)
+
+File uploads & Storage (Storage::disk('local'))
+
+Email & Notifications
+
+API development (API routes, Sanctum/Passport)
+
+Caching, Queues
+
+Events & Listeners
+
+10️⃣    Debugging & Testing
+
+Debugging tools: dd(), dump(), Log::info()
+
+Laravel Telescope (optional)
+
+Unit testing basics
+
+🔹 Priority Order for Beginners
+
+PHP & OOP
+
+Laravel Setup & Routing
+
+Controllers & Views
+
+Blade Templates
+
+Database + Eloquent
+
+Forms + Validation
+
+Authentication
+
+Session & Cookie
+
+Middleware
+
+Advanced features
